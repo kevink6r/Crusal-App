@@ -1,23 +1,20 @@
-<h2 class="header-title">
-  <img src="/Horizontal.png" alt="logo-sidenav" class="logo-img" />
-</h2>
-
-
 <ul class="sidenav-list transition">
-  <li class="user-icon-container">
+  <div class="user-icon-container">
     <mat-icon class="user-icon">account_circle</mat-icon>
-  </li>
-  @for (item of items(); track item.label)
-  {
-  <li>
-    <!-- Nivel 0 -->
-    <button type="button" class="nav-button hover:bg-black/15 transition-all duration-200"
-      [class.justify-center]="collapsed()" (click)="toggleExpand(item)" routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }">
-      @if (!collapsed()) {
-      <span class="flex-1 text-left">{{ item.label }}</span>
-      }
+  </div>
+
+  <!-- Lista de máquinas -->
+  <li *ngFor="let item of items()">
+    <button type="button"
+            class="nav-button hover:bg-black/15 transition-all duration-200"
+            (click)="onClickMachine(item)">
+      <span>{{ item }}</span>
     </button>
   </li>
-  }
+
+  <!-- Logo -->
+  <img class="logo-imagen" src="cms+530.png" alt="cms530-image">
+
+  <!-- Mensaje de usuario -->
+  <p class="user-message">Bienvenido Cesar Valentin</p>
 </ul>

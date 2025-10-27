@@ -1,22 +1,27 @@
 mat-sidenav-container,
 mat-sidenav-content,
 mat-sidenav {
-    overflow: hidden;
+  overflow: hidden;
 }
 
+/* Sidebar responsivo */
 mat-sidenav {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    height: 100vh;
-    width: 350px;
-    box-shadow: -5px 0 15px rgba(185, 166, 166, 0.747);
-    z-index: 1000;
-    background-color: rgba(247, 242, 242, 0.521);
-    border-radius: 0rem;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 25vw; /* 25% del ancho de la ventana */
+  max-width: 750px; /* límite superior */
+  min-width: 250px; /* límite inferior */
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 0;
+  transition: width 0.3s ease;
 }
 
+/* Contenido principal */
 mat-sidenav-content {
-    margin-right: 0;
-    overflow: auto;
+  margin-right: 0;
+  overflow: auto;
+  background-color: #cfcfcf;
 }

@@ -1,7 +1,9 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, Input, Output, signal, EventEmitter } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CommonModule, NgStyle } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 interface MenuItem {
   label: string;
@@ -10,33 +12,20 @@ interface MenuItem {
 
 @Component({
   selector: 'app-barra-lateral',
-  imports: [MatIconModule, RouterLinkActive, CommonModule],
+  imports: [MatIconModule, RouterModule, CommonModule],
   templateUrl: './barra-lateral.html',
   styleUrl: './barra-lateral.css',
 })
 
 export class BarraLateral {
-  collapsed = input.required<boolean>();
-  expandedItems = new Set<string>();
+  @Output() machineSelected = new EventEmitter<string>();
 
-  items = signal<MenuItem[]>([
-    { label: '530', path: '/dashboard' },
-    { label: '933HP', path: '/usuarios' },
-    { label: '502HP', path: '/productos' },
-    { label: '933', path: '/reportes' },
-    { label: '502', path: '/inventario' },
-    { label: '822', path: '/configuracion' },
-  ]);
-
-  toggleExpand(item: any): void {
-    if (this.isExpanded(item)) {
-      this.expandedItems.delete(item.path);
-    } else {
-      this.expandedItems.add(item.path);
-    }
+  items() {
+    return ['530', '933HP', '502HP', '933', '502', '822']; 
   }
 
-  isExpanded(item: any): boolean {
-    return this.expandedItems.has(item.path);
+  onClickMachine(machine: string) {
+    this.machineSelected.emit(machine);
   }
+
 }

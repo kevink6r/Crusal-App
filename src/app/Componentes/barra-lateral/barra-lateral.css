@@ -5,6 +5,7 @@
   font-style: normal;
 }
 
+/* ======= Encabezado del sidebar ======= */
 .header-title {
   font-family: 'Space Age', sans-serif;
   font-weight: 600;
@@ -16,13 +17,14 @@
   gap: 0.5rem;
 }
 
+/* ======= Logo ======= */
 .logo-img {
   width: 15rem;
   height: 3.5rem;
-  margin-left: 0rem;
   transition: all 0.3s;
 }
 
+/* ======= Fondo del sidebar ======= */
 .sidenav-list {
   padding: 0.5rem;
   display: flex;
@@ -30,19 +32,11 @@
   width: 100%;
   gap: 1rem;
   justify-content: center;
+  background-color: #ffffff;
+  /* background-color: #cfcfcf; */
 }
 
-.sub-list {
-  margin-top: 0.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  overflow: hidden;
-  transition: all 0.3s;
-}
-
-/* ================================= STYLES BOTONES DEL SIDEVAR ============================================== */
-
+/* ======= Botones principales ======= */
 .nav-button {
   width: 80%;
   height: 70px;
@@ -62,8 +56,7 @@
   text-align: center;
 }
 
-/* Animación del hover */
-
+/* Hover del botón */
 .nav-button:hover {
   background-color: rgba(29, 28, 28, 0.842);
   color: #ffffff;
@@ -71,86 +64,53 @@
   border-color: #2c2e30;
 }
 
-/* ======================================================================================================================================================*/
-
-.nav-link {
-  width: 100%;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 0.375rem;
-  transition: all 0.2s;
-  font-size: 1.2rem;
-}
-
-.icon-main {
-  font-size: 20px;
-  width: 20px;
-  height: 20px;
-}
-
-.icon-child {
-  font-size: 18px;
-  width: 16px;
-  height: 16px;
-  opacity: 0.8;
-}
-
-.icon-subchild,
-.icon-deep {
-  font-size: 16px;
-  width: 14px;
-  height: 14px;
-  opacity: 0.7;
-}
-
-.expand-icon {
-  transition: transform 0.2s;
-}
-
+/* Estado activo del botón */
 .active {
   background-color: rgb(70, 69, 69);
   color: white;
-  border-radius: 4px;
+  border-radius: 25px;
 }
 
-.nav-button mat-icon,
-.nav-link mat-icon {
-  color: inherit;
-}
-
-sub-list.transition {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
-.sub-list.transition.expanded {
-  max-height: 500px;
-  opacity: 1;
-}
-
-.mat-drawer-inner-container {
-  overflow: hidden !important;
-  /* elimina scroll vertical y horizontal */
-  height: 100% !important;
-  /* ocupa todo el alto disponible */
-  width: 100% !important;
-  /* ocupa todo el ancho del sidenav */
-}
-
-/* ================================= STYLE ICONO USUARIO EN SIDENAV ============================================== */
-
+/* ======= Icono del usuario ======= */
 .user-icon-container {
   display: flex;
-  justify-content: center;   /* centra horizontalmente */
-  align-items: center;       /* centra verticalmente */
-  height: 320px;             /* altura del bloque del icono */
+  justify-content: center;
+  align-items: center;
+  height: 400px; 
+  width: 100%;
+  padding-top: 7rem;
+  overflow: visible;
+  background: transparent;
+  margin-top: 1rem;
+  padding: auto;
+  margin-bottom: 2rem; 
 }
 
 .user-icon {
-  font-size: 14rem;           /* tamaño grande del icono */
-  color: #5f6063;            /* color igual que los bordes */
+  font-size: 25rem !important;
+  color: #ffffff;
+  display: block !important;
+  line-height: 1 !important;
+  height: auto !important;
+  width: auto !important;
+  color: rgb(0, 0, 0);
+}
+
+/* ======= Mensaje de bienvenida ======= */
+.user-message {
+  margin-top: auto; /* resp al fondo dela barra */
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #2c2c2c;
+  padding: 1.5rem 0;
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: #fcfcfc;
+}
+
+/* ========= 530 Image ================ */
+
+.logo-imagen {
+  margin-top: 3rem;
 }

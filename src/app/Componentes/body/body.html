@@ -1,0 +1,14 @@
+<div class="cards-container">
+  <div *ngIf="filteredPrendas.length === 0" class="placeholder">
+    Selecciona una máquina para ver las prendas
+  </div>
+  
+  <div *ngFor="let prenda of filteredPrendas" class="card">
+    <h3 class="card-title">{{ prenda.mod }}</h3>
+    <p><strong>Color:</strong> {{ prenda.col }}</p>
+    <p><strong>Operador:</strong> {{ prenda.trb }}</p>
+    <p><strong>Máquina:</strong> {{ prenda.maq }}</p>
+    <p><strong>Programa:</strong> {{ prenda.prog || '-' }}</p>
+    <p><strong>Cantidad:</strong> {{ prenda.cnt }}</p>
+  </div>
+</div>
