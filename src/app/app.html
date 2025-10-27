@@ -1,21 +1,21 @@
-<!-- Header flotante arriba -->
-<app-header class="fixed top-0 left-0 right-0 z-[9999]"></app-header>
+<app-header class="fixed top-0 left-0 right-0 z-50"></app-header>
 
-<!-- Contenedor del sidenav -->
-<mat-sidenav-container class="h-screen pt-[90px]">
-
-  <!-- Sidebar -->
-  <mat-sidenav class="sidebar-container !rounded-none border-r !border-gray-300 custom-animation"
-    [style.width.px]="width()" opened mode="side">
+<mat-sidenav-container class="layout-container">
+  <!-- SIDENAV -->
+  <mat-sidenav
+    class="sidebar-container"
+    [style.width.px]="width()"
+    mode="side"
+    opened
+  >
     <app-barra-lateral (machineSelected)="onMachineSelected($event)"></app-barra-lateral>
   </mat-sidenav>
 
-  <!-- Contenido principal -->
-  <mat-sidenav-content class="content-area" [style.margin-left.px]="width()">
-    <div class="p-4">
-      <app-body [maquina]="selectedMachine" />
-      <router-outlet></router-outlet>
+  <!-- CONTENIDO -->
+  <mat-sidenav-content class="content-container">
+
+    <div class="body-wrapper">
+      <app-body [maquina]="selectedMachine"></app-body>
     </div>
   </mat-sidenav-content>
-
 </mat-sidenav-container>

@@ -1,14 +1,85 @@
-<div class="cards-container">
-  <div *ngIf="filteredPrendas.length === 0" class="placeholder">
-    Selecciona una máquina para ver las prendas
-  </div>
-  
-  <div *ngFor="let prenda of filteredPrendas" class="card">
-    <h3 class="card-title">{{ prenda.mod }}</h3>
-    <p><strong>Color:</strong> {{ prenda.col }}</p>
-    <p><strong>Operador:</strong> {{ prenda.trb }}</p>
-    <p><strong>Máquina:</strong> {{ prenda.maq }}</p>
-    <p><strong>Programa:</strong> {{ prenda.prog || '-' }}</p>
-    <p><strong>Cantidad:</strong> {{ prenda.cnt }}</p>
+<div class="body-container">
+  <div class="cards-container">
+
+    <div *ngIf="filteredPrendas.length === 0" class="placeholder">
+      Selecciona una máquina para ver las prendas
+    </div>
+
+    <mat-card *ngFor="let prenda of filteredPrendas" class="card" appearance="outlined">
+      <mat-card-content class="card-content">
+        <img
+          mat-card-image
+          src="AAPW22-09B.png"
+          alt="{{ prenda.mod }}"
+          class="card-image"
+        />
+
+        <h3 class="card-title" style="font-weight: 700; font-size: 22px;">{{ prenda.mod }}</h3>
+        <p><strong>Programador:</strong> {{ prenda.trb }}</p>
+        <p><strong>Máquina:</strong> {{ prenda.maq }}</p>
+        <p><strong>Cantidad:</strong> {{ prenda.cnt }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" class="card-button">
+          Ver Detalles
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+<div class="body-container">
+  <div class="cards-container">
+
+    <div *ngIf="filteredPrendas.length === 0" class="placeholder">
+      Selecciona una máquina para ver las prendas
+    </div>
+
+    <mat-card *ngFor="let prenda of filteredPrendas" class="card" appearance="outlined">
+      <mat-card-content class="card-content">
+        <img
+          mat-card-image
+          [src]="prenda.imageUrl"
+          alt="{{ prenda.mod }}"
+          class="card-image"
+        />
+
+        <h3 class="card-title">{{ prenda.mod }}</h3>
+        <p><strong>Color:</strong> {{ prenda.col }}</p>
+        <p><strong>Programador:</strong> {{ prenda.trb }}</p>
+        <p><strong>Máquina:</strong> {{ prenda.maq }}</p>
+        <p><strong>Cantidad:</strong> {{ prenda.cnt }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" class="card-button">
+          Ver Detalles
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+</div>
+
+
+
+
+
+-->

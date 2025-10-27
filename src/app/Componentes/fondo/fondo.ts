@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-fondo',
   imports: [],
   templateUrl: './fondo.html',
+  standalone: true,
   styleUrl: './fondo.css',
 })
 export class Fondo {

@@ -10,9 +10,9 @@ mat-sidenav {
   top: 0;
   bottom: 0;
   height: 100vh;
-  width: 25vw; /* 25% del ancho de la ventana */
-  max-width: 750px; /* límite superior */
-  min-width: 250px; /* límite inferior */
+  width: 25vw; 
+  max-width: 750px; 
+  min-width: 250px; 
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   border-radius: 0;
@@ -23,5 +23,77 @@ mat-sidenav {
 mat-sidenav-content {
   margin-right: 0;
   overflow: auto;
-  background-color: #cfcfcf;
+  background-color: #ffffff;
+}
+
+mat-sidenav-container {
+  background-color: #ffffff;
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+mat-sidenav-content {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+mat-sidenav-container {
+  height: 100vh; 
+  display: flex;
+  flex-direction: row; /* el sidenav y el contenido van lado a lado */
+}
+
+mat-sidenav {
+  background-color: #ffffff;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+}
+
+mat-sidenav-content {
+  flex: 1;
+  overflow: auto;
+  background-color: #ffffff;
+  margin-top: 0rem;
+  height: 100vh;
+}
+
+.content-area {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+/* ============================================= */
+
+.layout-container {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Sidenav fijo */
+.sidebar-container {
+  width: 350px;
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+}
+
+/* Área del contenido */
+.content-container {
+  flex: 1;
+  background-color: #ffffff;
+  overflow-y: auto;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Asegura que el body se pegue al sidenav */
+.body-wrapper {
+  margin-left: 0 !important;
+  padding: 100px 20px 20px 20px; /* espacio solo arriba para el header */
 }

@@ -5,12 +5,15 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule, ActivatedRoute} from '@angular/router';
 import { Input } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-body',
-  imports: [RouterModule, MatIconModule, CommonModule],
+  imports: [RouterModule, MatIconModule, CommonModule, MatCardModule, MatButtonModule],
+  standalone: true,
   templateUrl: './body.html',
-  styleUrls: ['./body.css'],
+  styleUrl: './body.css',
 })
 
 export class Body {

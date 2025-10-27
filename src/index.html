@@ -3,7 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="">
+  <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self' http://localhost:4200 https://* data: blob:;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:4200 https://*;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' data: blob: filesystem: http://localhost:4200 https://*;
+  font-src 'self' data: https://fonts.gstatic.com;
+  connect-src 'self' http://localhost:4200 https://192.168.2.119:8080 https://* ws://localhost:4200;
+  frame-src 'self' https://*;
+" />
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">

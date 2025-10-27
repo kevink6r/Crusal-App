@@ -10,9 +10,17 @@ import { Body } from './Componentes/body/body';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatSidenavModule, Header, BarraLateral, CommonModule, Body],
+  imports: [ 
+    MatSidenavModule, 
+    Header, 
+    BarraLateral, 
+    CommonModule,  
+    MatSidenavModule,
+    Body
+  ],
+
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrls: ['./app.css'],
 })
 
 export class App {

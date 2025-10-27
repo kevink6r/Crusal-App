@@ -5,8 +5,8 @@ import { Fondo } from './Componentes/fondo/fondo';
 
 
 export const routes: Routes = [
-  { path: '', component: Fondo },        // placeholder inicial
-  { path: ':maquina', component: Body } // Body recibe tipo de máquina
+  { path: '', component: Fondo },      
+  { path: ':maquina', component: Body } 
 ];
 
 

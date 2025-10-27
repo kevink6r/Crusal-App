@@ -14,6 +14,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
   imports: [MatToolbarModule, MatIconModule, MatButtonModule, MatDividerModule,
     MatMenuModule, MatSlideToggleModule, CommonModule],
   templateUrl: './header.html',
+  standalone: true,
   styleUrl: './header.css',
 })
 export class Header {

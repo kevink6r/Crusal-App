@@ -5,9 +5,11 @@
 
   <!-- Lista de máquinas -->
   <li *ngFor="let item of items()">
-    <button type="button"
-            class="nav-button hover:bg-black/15 transition-all duration-200"
-            (click)="onClickMachine(item)">
+    <button
+      type="button"
+      class="nav-button hover:bg-black/15 transition-all duration-200"
+      [class.active]="item === selectedMachine"  
+      (click)="onClickMachine(item)">
       <span>{{ item }}</span>
     </button>
   </li>

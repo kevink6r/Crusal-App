@@ -1,12 +1,25 @@
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
+.body-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: auto; /* scroll vertical si se desborda */
   padding: 1rem;
 }
 
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 1rem;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
 .card {
-  background: #ffffff;
+  background: #F8F8F8;
   border-radius: 0.75rem;
   padding: 1rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -28,5 +41,48 @@
   font-size: 1rem;
   color: #666;
   text-align: center;
-  grid-column: 1/-1; /* ocupa todo el ancho */
+  grid-column: 1/-1; 
+}
+
+/* ==================================== boton del card ====================================== */
+
+.card-button {
+  border-radius: 25px !important;
+  background-color: #3ABCED !important;
+  color: white !important;
+  padding: 1.3rem;
+  font-weight: 500;
+  border: 2px solid #27aedf !important;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+}
+
+.card-button:hover {
+  background-color: #079cd3 !important;
+  transform: scale(1.03);
+}
+
+
+/* ==================================== imangen ====================================== */
+
+.card-image {
+  border-radius: 25px;
+  height: 240px;
+  width: 150%;
+  border: 3px solid #F8F8F8;
+  margin-top: 0rem;
+}
+
+
+/* =================================== Contenido ======================================= */
+.card-content {
+  text-align: left;
+  padding: 0rem;
+}
+
+.card-title {
+  margin-top: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
 }
