@@ -8,15 +8,15 @@
     <button
       type="button"
       class="nav-button hover:bg-black/15 transition-all duration-200"
-      [class.active]="item === selectedMachine"  
-      (click)="onClickMachine(item)">
+      [class.active]="item === selectedMachine"
+      (click)="onClickMachine(item)"
+    >
       <span>{{ item }}</span>
     </button>
   </li>
 
-  <!-- Logo -->
-  <img class="logo-imagen" src="cms+530.png" alt="cms530-image">
-
-  <!-- Mensaje de usuario -->
-  <p class="user-message">Bienvenido Cesar Valentin</p>
+  <div class="Img-message-container">
+    <img class="logo-imagen" src="cms+530.png" alt="cms530-image" />
+    <p class="user-message">Bienvenido Cesar Valentin</p>
+  </div>
 </ul>

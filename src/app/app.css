@@ -66,8 +66,6 @@ mat-sidenav-content {
   flex-direction: row;
 }
 
-
-
 /* ============================================= */
 
 .layout-container {
@@ -95,5 +93,5 @@ mat-sidenav-content {
 /* Asegura que el body se pegue al sidenav */
 .body-wrapper {
   margin-left: 0 !important;
-  padding: 100px 20px 20px 20px; /* espacio solo arriba para el header */
+  padding: 65px 0px 0px 0px; /* espacio solo arriba para el header */
 }

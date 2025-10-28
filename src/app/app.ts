@@ -10,14 +10,14 @@ import { Body } from './Componentes/body/body';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ 
-    MatSidenavModule, 
-    Header, 
-    BarraLateral, 
-    CommonModule,  
+  imports: [
+    MatSidenavModule,
+    Header,
+    BarraLateral,
+    CommonModule,
     MatSidenavModule,
     Body
-  ],
+],
 
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
@@ -28,13 +28,16 @@ export class App {
 
   selectedMachine: string = '';
   collapsed = signal(false);
+  selectedPrenda: any = null;
   width = computed(() => (this.collapsed() ? 64 : 400));
 
   onMachineSelected(machine: string) {
     this.selectedMachine = machine;
+    this.selectedPrenda = null;
   }
 
 }
 
 
 
+/* PONE RLE HEADER ENCIMA DEL MAT CONTAINER GENEREAL, Y EN EL CSS DE HEADER JUGAR CON EL Z INDEX  */

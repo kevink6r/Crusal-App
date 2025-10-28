@@ -1,0 +1,9 @@
+.img {
+    margin-top: auto;
+    text-align: center;
+    padding: 1rem 0;
+    background: #ffffff;
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+}

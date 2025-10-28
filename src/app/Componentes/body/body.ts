@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule, ActivatedRoute} from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-body',
@@ -18,9 +19,13 @@ import { MatButtonModule } from '@angular/material/button';
 
 export class Body {
   @Input() maquina: string = '';
+  prendaSeleccionada: any = null;
 
   dataList: any[] = [];
   filteredPrendas: any[] = [];
+  selectedPrenda: any = null;
+  mostrarBotonesExtra: boolean = false;
+  selectedMachine: string = '';
 
   constructor(private http: HttpClient) {
     this.obtenerDatos();
@@ -50,4 +55,24 @@ export class Body {
       item.maq?.toString().toLowerCase().includes(tipo.toLowerCase())
     );
   }
+
+  verDetalles(prenda: any) {
+    this.selectedPrenda = prenda;
+    this.mostrarBotonesExtra = false; // reset al entrar
+  }
+
+  cerrarDetalles() {
+    this.selectedPrenda = null;
+    this.mostrarBotonesExtra = false;
+  }
+
+  mostrarMasBotones() {
+    this.mostrarBotonesExtra = !this.mostrarBotonesExtra; // alterna visibilidad
+  }
+
+  onMachineSelected(machine: string) {
+    this.selectedMachine = machine;  // Actualiza la máquina seleccionada
+    this.selectedPrenda = null;       // Oculta la vista detalle
+  }
+  
 }

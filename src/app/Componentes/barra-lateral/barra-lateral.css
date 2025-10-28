@@ -5,35 +5,17 @@
   font-style: normal;
 }
 
-/* ======= Encabezado del sidebar ======= */
-.header-title {
-  font-family: 'Space Age', sans-serif;
-  font-weight: 600;
-  padding: 1rem 0.5rem;
-  margin-bottom: 0.25rem;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-/* ======= Logo ======= */
-.logo-img {
-  width: 15rem;
-  height: 3.5rem;
-  transition: all 0.3s;
-}
-
 /* ======= Fondo del sidebar ======= */
 .sidenav-list {
-  padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  justify-content: flex-start;
+  height: 100vh;      /* ocupa toda la pantalla */
+  padding: 1rem 0.5rem;
   gap: 1rem;
-  justify-content: center;
   background-color: #ffffff;
-  /* background-color: #cfcfcf; */
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 /* ======= Botones principales ======= */
@@ -81,22 +63,22 @@
   padding-top: 7rem;
   overflow: visible;
   background: transparent;
-  margin-top: 1rem;
+  margin-top: -3rem;
   padding: auto;
-  margin-bottom: 2rem; 
+  margin-bottom: -1.8rem; 
 }
 
 .user-icon {
-  font-size: 25rem !important;
+  font-size: 18rem ;
   color: #ffffff;
-  display: block !important;
-  line-height: 1 !important;
-  height: auto !important;
-  width: auto !important;
+  display: block ;
+  line-height: 1 ;
+  height: auto ;
+  width: auto ;
   color: rgb(0, 0, 0);
 }
 
-/* ======= Mensaje de bienvenida ======= */
+/* ============================== Mensaje de bienvenida ================================== */
 .user-message {
   margin-top: auto; /* resp al fondo dela barra */
   text-align: center;
@@ -105,12 +87,68 @@
   font-weight: 500;
   color: #2c2c2c;
   padding: 1.5rem 0;
-  border-top: 2px solid rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
 }
 
-/* ========= 530 Image ================ */
+/* =================================== 530 Image ======================================= */
 
 .logo-imagen {
-  margin-top: 3rem;
+  width: 70%;
+  max-width: 350px;
+  height: auto;
+  margin: 0 auto 0.5rem;
 }
+
+.user-message {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #2c2c2c;
+  margin: 0;
+}
+
+.Img-message-container {
+  margin-top: auto; 
+  text-align: center;
+  padding: 1rem 0;
+  background: #ffffff;
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+
+/* ======================== MEDIA QUERIES ======================== */
+
+@media (max-width: 1024px) {
+  .nav-button {
+    width: 80%;
+    font-size: 1rem;
+  }
+
+  .user-icon {
+    font-size: 15vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidenav-list {
+    width: 70px;   
+    padding: 0.5rem 0;
+  }
+
+  .nav-button span {
+    display: none; 
+  }
+
+  .user-icon {
+    font-size: 8vw;
+  }
+
+  .logo-imagen {
+    width: 40%;
+  }
+
+  .user-message {
+    font-size: 0.8rem;
+  }
+} 

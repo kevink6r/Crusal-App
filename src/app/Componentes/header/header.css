@@ -26,7 +26,7 @@
 
 /* ===== Logo ===== */
 .logo {
-  height: 80px; /* ajusta el tamaño del logo */
+  height: 60px; /* ajusta el tamaño del logo */
   width: auto;
   object-fit: contain;
   margin: 10px 20px; /* agrega espacio arriba/abajo y separa del texto */
@@ -36,7 +36,7 @@
 .toolbar-title {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 16px;
   color: #3c3c3c;
   margin-left: 10px; /* espacio entre logo y texto */
 }
