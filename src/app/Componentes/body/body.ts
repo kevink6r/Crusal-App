@@ -27,7 +27,7 @@ export class Body {
   mostrarBotonesExtra: boolean = false;
   mostrarBotones16: boolean = false;
   selectedMachine: string = '';
-
+  botonSeleccionado: number | null = null;
   
   constructor(private http: HttpClient) {
     this.obtenerDatos();
@@ -87,21 +87,19 @@ export class Body {
     this.mostrarBotonesExtra = false;
   }
 
-  //===== Botones Grid 11 ===========================================================================================================================
-
-  mostrarMasBotones() {
+  // ===== Botones Grid 11 ====================================================
+  toggleBotonesExtra() {
     this.mostrarBotonesExtra = !this.mostrarBotonesExtra;
     if (!this.mostrarBotonesExtra) {
       this.mostrarBotones16 = false;
-    } else {
-      this.mostrarBotonesPiezas();
+      this.botonSeleccionado = null;
     }
   }
 
-  //===== Botones Abajo 16 ===========================================================================================================================
-
-  mostrarBotonesPiezas() {
+  // ===== Botones Abajo 16 ====================================================
+  mostrarBotonesPiezas(index?: number) {
+    this.botonSeleccionado = index ?? 0;
     this.mostrarBotones16 = true;
+    
   }
-
 }

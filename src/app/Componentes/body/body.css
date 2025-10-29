@@ -181,18 +181,18 @@
 /* =================================== css Detalles ========================================== */
 
 .detalle-container {
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 3rem;
-    padding: 2rem;
-    flex-wrap: nowrap;
-  }
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 3rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
 
 @media (min-width: 1920px) and (min-height: 1200px) {
-  
+
 
   /* ======== Columna izquierda (imagen + info) ======== */
   .detalle-left {
@@ -200,6 +200,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 623px;
+    height: auto;
   }
 
   /* Imagen ajustada automáticamente */
@@ -224,17 +226,17 @@
 
   /* ============================================= Botones extras ================================================= */
   .extra-buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* forma de “paquetes” */
-  gap: 1rem;
-  background: transparent;
-  padding: 1rem;
-  justify-items: center;
-  align-items: center;
-  text-align: center;
-  margin-top: -1rem; /* elimina desplazamiento vertical */
-  margin-left: 1rem; /* separación respecto a .detalle-right */
-}
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    background: transparent;
+    padding: 1rem;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    margin-top: -1rem;
+    margin-left: 0rem;
+  }
 
   /* Botones extra (cards) */
   .extra-button {
@@ -242,8 +244,8 @@
     color: white !important;
     font-weight: 600;
     border-radius: 1.2rem;
-    width: 12.5rem; 
-    height: 8rem; 
+    width: 12.5rem;
+    height: 8rem;
     box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease;
     display: flex;
@@ -287,8 +289,8 @@
 .detalle-button {
   background-color: #26c92c !important;
   color: white !important;
-  width: 200px;
-  padding: 1.6rem;
+  width: 250px;
+  padding: 2rem;
   font-weight: 600;
   transition: all 0.2s ease;
   border-radius: 25px;
@@ -324,15 +326,6 @@
 
 /* =============================================== Botones 16 debajo ========================================================= */
 
-/* 16 Botones (2x8) 
-.botones-abajo {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  padding: 2rem;
-  justify-items: center;
-  align-items: center;
-}
 
 .boton-abajo {
   background-color: #FFBE00 !important;
@@ -350,7 +343,41 @@
 }
 
 .boton-abajo:hover {
-  background-color: #FFBE00 !important;
   transform: scale(1.05);
 }
-*/
+
+/* ===============================================================================================================*/
+
+.botones-abajo {             
+  flex-wrap: wrap;         
+  gap: 1rem;
+  padding: 2rem;
+  grid-template-columns: repeat(8, 1fr);
+  justify-content: flex; 
+  overflow-x: auto;           
+  max-width: 100%;            
+  margin-top: 2rem;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.boton-abajo {
+  background-color: #FFBE00 !important;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 1rem;
+  width: 12.5rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  flex-shrink: 0; 
+}
+
+.boton-abajo:hover {
+  transform: scale(1.05);
+}
