@@ -27,6 +27,5 @@ export class BarraLateral {
   onClickMachine(machine: string) {
     this.selectedMachine = machine;
     this.machineSelected.emit(machine);
-    
   }
 }

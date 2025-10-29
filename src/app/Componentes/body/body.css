@@ -181,17 +181,19 @@
 
 /* =================================== css Detalles ========================================== */
 
-@media (min-width: 1920px) and (min-height: 1200px) {
-  .detalle-container {
+.detalle-container {
     display: flex;
     position: relative;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: left;
+    justify-content: flex-start;
     gap: 3rem;
     padding: 2rem;
     flex-wrap: wrap;
   }
+
+@media (min-width: 1920px) and (min-height: 1200px) {
+  
 
   /* ======== Columna izquierda (imagen + info) ======== */
   .detalle-left {
@@ -228,6 +230,7 @@
     right: 3rem;
     transform: translateY(-50%);
     display: grid;
+    position: absolute;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     background: transparent;
@@ -235,7 +238,7 @@
     justify-items: center;
     align-items: center;
     z-index: 100;
-    margin-top: 0rem;
+    margin-top: -1rem;
     align-items: center;
     text-align: center;
   }

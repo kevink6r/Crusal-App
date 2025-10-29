@@ -53,12 +53,13 @@ export class Body {
     }
     this.filteredPrendas = this.dataList.filter(item =>
       item.maq?.toString().toLowerCase().includes(tipo.toLowerCase())
-    );
+    ); 
+    this.cerrarDetalles();
   }
 
   verDetalles(prenda: any) {
     this.selectedPrenda = prenda;
-    this.mostrarBotonesExtra = false; // reset al entrar
+    this.mostrarBotonesExtra = false; 
   }
 
   cerrarDetalles() {
@@ -67,12 +68,12 @@ export class Body {
   }
 
   mostrarMasBotones() {
-    this.mostrarBotonesExtra = !this.mostrarBotonesExtra; // alterna visibilidad
+    this.mostrarBotonesExtra = !this.mostrarBotonesExtra; 
   }
 
   onMachineSelected(machine: string) {
-    this.selectedMachine = machine;  // Actualiza la máquina seleccionada
-    this.selectedPrenda = null;       // Oculta la vista detalle
+    this.selectedMachine = machine;   
+    this.filtrarPorMaquina(machine);  
   }
-  
+
 }
