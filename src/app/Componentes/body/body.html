@@ -53,9 +53,9 @@
 
     </div>
     <div class="extra-buttons" *ngIf="mostrarBotonesExtra">
-      <button *ngFor="let boton of [].constructor(11); let i = index" mat-raised-button class="extra-button">
+      <button *ngFor="let boton of [].constructor(11); let i = index" mat-raised-button class="extra-button"
+        (click)="mostrarBotonesPiezas()">
         Extra {{ i + 1 }}
       </button>
     </div>
   </div>
-</div>

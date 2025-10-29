@@ -10,7 +10,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100vh;      /* ocupa toda la pantalla */
+  height: 100vh;
+  /* ocupa toda la pantalla */
   padding: 1rem 0.5rem;
   gap: 1rem;
   background-color: #ffffff;
@@ -58,29 +59,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 450px; 
+  height: 450px;
   width: 100%;
   padding-top: 7rem;
   overflow: visible;
   background: transparent;
   margin-top: -3rem;
   padding: auto;
-  margin-bottom: -1.8rem; 
+  margin-bottom: -1.8rem;
 }
 
 .user-icon {
-  font-size: 18rem ;
+  font-size: 18rem;
   color: #ffffff;
-  display: block ;
-  line-height: 1 ;
-  height: auto ;
-  width: auto ;
+  display: block;
+  line-height: 1;
+  height: auto;
+  width: auto;
   color: rgb(0, 0, 0);
 }
 
 /* ============================== Mensaje de bienvenida ================================== */
 .user-message {
-  margin-top: auto; /* resp al fondo dela barra */
+  margin-top: auto;
+  /* resp al fondo dela barra */
   text-align: center;
   font-family: 'Roboto', sans-serif;
   font-size: 1.3rem;
@@ -108,7 +110,7 @@
 }
 
 .Img-message-container {
-  margin-top: auto; 
+  margin-top: auto;
   text-align: center;
   padding: 1rem 0;
   background: #ffffff;
@@ -132,12 +134,12 @@
 
 @media (max-width: 768px) {
   .sidenav-list {
-    width: 70px;   
+    width: 70px;
     padding: 0.5rem 0;
   }
 
   .nav-button span {
-    display: none; 
+    display: none;
   }
 
   .user-icon {
@@ -151,4 +153,4 @@
   .user-message {
     font-size: 0.8rem;
   }
-} 
+}

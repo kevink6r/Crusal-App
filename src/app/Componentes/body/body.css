@@ -15,7 +15,6 @@
   padding: 1rem;
   box-sizing: border-box;
   justify-content: center;
-
 }
 
 .card {
@@ -189,7 +188,7 @@
     justify-content: flex-start;
     gap: 3rem;
     padding: 2rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
 @media (min-width: 1920px) and (min-height: 1200px) {
@@ -224,24 +223,18 @@
   }
 
   /* ============================================= Botones extras ================================================= */
-  .extra-buttons{
-    position: absolute;
-    top: 50%;
-    right: 3rem;
-    transform: translateY(-50%);
-    display: grid;
-    position: absolute;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    background: transparent;
-    padding: 1rem;
-    justify-items: center;
-    align-items: center;
-    z-index: 100;
-    margin-top: -1rem;
-    align-items: center;
-    text-align: center;
-  }
+  .extra-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* forma de “paquetes” */
+  gap: 1rem;
+  background: transparent;
+  padding: 1rem;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  margin-top: -1rem; /* elimina desplazamiento vertical */
+  margin-left: 1rem; /* separación respecto a .detalle-right */
+}
 
   /* Botones extra (cards) */
   .extra-button {
@@ -329,9 +322,35 @@
   transform: scale(1.03);
 }
 
+/* =============================================== Botones 16 debajo ========================================================= */
 
+/* 16 Botones (2x8) 
+.botones-abajo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2rem;
+  justify-items: center;
+  align-items: center;
+}
 
+.boton-abajo {
+  background-color: #FFBE00 !important;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 1rem;
+  width: 15rem;
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
 
-
-
-
+.boton-abajo:hover {
+  background-color: #FFBE00 !important;
+  transform: scale(1.05);
+}
+*/

@@ -25,10 +25,29 @@ export class Body {
   filteredPrendas: any[] = [];
   selectedPrenda: any = null;
   mostrarBotonesExtra: boolean = false;
+  mostrarBotones16: boolean = false;
   selectedMachine: string = '';
 
+  
   constructor(private http: HttpClient) {
     this.obtenerDatos();
+  }
+
+  /*
+  constructor() {
+    this.generarDatosMock();
+  }*/
+
+  generarDatosMock() {
+    this.dataList = [
+      { mod: 'Modelo AAPW22-01', trb: 'Juan Pérez', maq: '530', cnt: 120 },
+      { mod: 'Modelo AAPW22-02', trb: 'María Gómez', maq: '530', cnt: 95 },
+      { mod: 'Modelo AAPW22-03', trb: 'Carlos Ruiz', maq: '530', cnt: 140 },
+      { mod: 'Modelo AAPW22-04', trb: 'Ana López', maq: '540', cnt: 75 },
+      { mod: 'Modelo AAPW22-05', trb: 'Pedro Sánchez', maq: '530', cnt: 60 },
+      { mod: 'Modelo AAPW22-06', trb: 'Lucía Torres', maq: '550', cnt: 100 },
+    ];
+    this.filtrarPorMaquina(this.maquina);
   }
 
   ngOnChanges() {
@@ -53,13 +72,14 @@ export class Body {
     }
     this.filteredPrendas = this.dataList.filter(item =>
       item.maq?.toString().toLowerCase().includes(tipo.toLowerCase())
-    ); 
+    );
     this.cerrarDetalles();
   }
 
   verDetalles(prenda: any) {
     this.selectedPrenda = prenda;
-    this.mostrarBotonesExtra = false; 
+    this.mostrarBotonesExtra = false;
+    this.mostrarBotones16 = false;
   }
 
   cerrarDetalles() {
@@ -67,13 +87,21 @@ export class Body {
     this.mostrarBotonesExtra = false;
   }
 
+  //===== Botones Grid 11 ===========================================================================================================================
+
   mostrarMasBotones() {
-    this.mostrarBotonesExtra = !this.mostrarBotonesExtra; 
+    this.mostrarBotonesExtra = !this.mostrarBotonesExtra;
+    if (!this.mostrarBotonesExtra) {
+      this.mostrarBotones16 = false;
+    } else {
+      this.mostrarBotonesPiezas();
+    }
   }
 
-  onMachineSelected(machine: string) {
-    this.selectedMachine = machine;   
-    this.filtrarPorMaquina(machine);  
+  //===== Botones Abajo 16 ===========================================================================================================================
+
+  mostrarBotonesPiezas() {
+    this.mostrarBotones16 = true;
   }
 
 }

@@ -2,12 +2,7 @@
 
 <mat-sidenav-container class="layout-container">
   <!-- SIDENAV -->
-  <mat-sidenav
-    class="sidebar-container"
-    [style.width.px]="width()"
-    mode="side"
-    opened
-  >
+  <mat-sidenav class="sidebar-container" [style.width.px]="width()" mode="side" opened>
     <app-barra-lateral (machineSelected)="selectedMachine = $event"></app-barra-lateral>
   </mat-sidenav>
 
