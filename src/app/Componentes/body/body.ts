@@ -28,18 +28,22 @@ export class Body {
   mostrarBotones16: boolean = false;
   selectedMachine: string = '';
   botonSeleccionado: number | null = null;
+  activeExtraButton: number = -1;
+  activeBelowButton: number = -1;
+  activeRightButton: number = -1;
 
-  /*
   constructor(private http: HttpClient) {
     this.obtenerDatos();
   }
-  */
 
+  detalleRightButtons: string[] = ['03774','03777','03780','03781','03782','03780','03781','03782'];
 
+  /*
   constructor() {
     this.generarDatosMock();
   }
 
+  
   generarDatosMock() {
     this.dataList = [
       { mod: 'Modelo AAPW22-01', trb: 'Juan Pérez', maq: '530', cnt: 120 },
@@ -50,13 +54,13 @@ export class Body {
       { mod: 'Modelo AAPW22-06', trb: 'Lucía Torres', maq: '550', cnt: 100 },
     ];
     this.filtrarPorMaquina(this.maquina);
-  }
+  }*/
 
   ngOnChanges() {
     this.filtrarPorMaquina(this.maquina);
   }
 
-  /*
+
   obtenerDatos() {
     this.http.get<any[]>("https://192.168.2.119:8080/api/trproduction/All")
       .subscribe({
@@ -66,7 +70,7 @@ export class Body {
         },
         error: (err) => console.error("Error al obtener los datos:", err)
       });
-  }*/
+  }
 
   filtrarPorMaquina(tipo: string) {
     if (!tipo) {

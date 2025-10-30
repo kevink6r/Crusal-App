@@ -191,8 +191,7 @@
   flex-wrap: wrap;
 }
 
-@media (min-width: 1920px) and (min-height: 1200px) {
-
+@media (min-width: 1900px) and (min-height: 1200px) {
 
   /* ======== Columna izquierda (imagen + info) ======== */
   .detalle-left {
@@ -238,21 +237,50 @@
     margin-left: 0rem;
   }
 
-  /* Botones extra (cards) */
+
   .extra-button {
     background-color: #26c92c !important;
     color: white !important;
     font-weight: 600;
-    border-radius: 1.2rem;
-    width: 12.5rem;
-    height: 8rem;
+    border-radius: 2rem;
+    width: clamp(8rem, 12vw, 13rem);
+    height: clamp(6rem, 9vw, 8rem);
     box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    padding: 3rem;
     transition: all 0.2s ease;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-wrap: wrap;
   }
+
+  /*
+.extra-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(8rem, 12vw, 13rem), 1fr));
+  gap: clamp(0.8rem, 1.5vw, 1.5rem);
+  justify-items: center;
+  align-items: center;
+  padding: clamp(1rem, 2vw, 2rem);
+}
+
+.extra-button {
+  background-color: #26c92c !important;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 1rem;
+  width: clamp(8rem, 12vw, 13rem);
+  height: clamp(6rem, 9vw, 8rem);
+  font-size: clamp(1rem, 1.2vw, 1.4rem);
+  transition: all 0.2s ease;
+}
+
+.extra-button:hover {
+  transform: scale(1.05);
+  background-color: #43a047 !important;
+}*/
+
 
   .extra-button:hover {
     background-color: #43a047 !important;
@@ -326,82 +354,148 @@
 
 /* ===============================================================================================================*/
 
-.botones-abajo {             
-  flex-wrap: wrap;         
+.botones-abajo {
+  flex-wrap: wrap;
   gap: 1rem;
-  padding: 2rem;
-  grid-template-columns: repeat(8, 1fr);
-  justify-content: flex; 
-  overflow-x: auto;           
-  max-width: 100%;            
-  margin-top: 2rem;
+  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(9rem, 13vw, 10rem), 1fr));
+  justify-content: flex;
+  overflow-x: auto;
+  max-width: 110%;
+  margin-top: -30px;
   display: grid;
-  justify-items: center;
+  justify-items: left;
   align-items: center;
 }
 
 .boton-abajo {
   background-color: #FFBE00 !important;
-  color: white !important;
+  color: white;
   font-weight: 600;
-  border-radius: 1rem;
-  width: 12.5rem;
-  height: 10rem;
+  border-radius: 2rem;
+  width: 20rem;
+  height: 8rem;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.2);
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 .boton-abajo:hover {
+  transform: scale(1.05);
+  background-color: #ebb412 !important;
+}
+
+.below-buttons-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+  text-align: left;
+  margin-top: 0rem;
+  margin-bottom: 0px;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Extra Buttons */
+.extra-button.active {
+  background-color: #1e7e1e !important; /* verde más oscuro */
+  transform: scale(1.08);
+}
+
+/* Botones Abajo */
+.boton-abajo.active {
+  background-color: #e69c00 !important; /* naranja más oscuro */
   transform: scale(1.05);
 }
 
 /* =================================== Responsividad =================================== */
 
-/* 🖥️ Monitores grandes (1920x1200 o más) */
-@media (min-width: 1920px) {
+/* =================================== Monitores grandes (1920x1200 o más) =======================================*/
+@media (min-width: 1900px) and (min-height: 1200px) {
   .detalle-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     max-width: 420px;
   }
+
   .detalle-right {
     max-width: 500px;
   }
+
   .extra-buttons {
-    width: 14rem;
+    width: 41rem;
     height: 9rem;
   }
+
   .boton-abajo {
     max-width: 9.8rem;
     height: 10rem;
   }
 }
 
-/* 💻 Laptops medianas (1366px a 1919px) */
-@media (max-width: 1919px) and (min-width: 1025px) {
+/* ====================================== Laptops medianas (1899px a 1025px) ===================================== */
+
+@media (max-width: 1899px) and (min-width: 1025px) {
   .detalle-container {
     flex-direction: row;
     justify-content: space-evenly;
   }
+
   .detalle-left,
   .detalle-right {
     flex: 1 1 45%;
   }
 }
 
-/* 📱 Tablets y pantallas pequeñas */
+/* =================================== Tablets y pantallas pequeñas ============================================== */
+
 @media (max-width: 1024px) {
   .detalle-container {
     flex-direction: column;
     align-items: center;
   }
+
   .extra-buttons {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
+
   .detalle-button {
     width: 80%;
+  }
+}
+
+/* ================================== Responsive de titulo de piezas ======================================================== */
+@media (max-width: 1600px) {
+  .below-buttons-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.3rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .below-buttons-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .below-buttons-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .below-buttons-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
   }
 }

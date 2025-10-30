@@ -42,16 +42,12 @@
     </div>
 
     <div class="detalle-right">
-      <button mat-raised-button (click)="toggleBotonesExtra(0)" class="detalle-button">03774</button>
-      <button mat-raised-button (click)="toggleBotonesExtra(1)" class="detalle-button">03777</button>
-      <button mat-raised-button (click)="toggleBotonesExtra(2)" class="detalle-button">03780</button>
-      <button mat-raised-button (click)="toggleBotonesExtra(3)" class="detalle-button">03781</button>
-      <button mat-raised-button (click)="toggleBotonesExtra(4)" class="detalle-button">03782</button>
-      <button mat-raised-button (click)="toggleBotonesExtra(5)" class="detalle-button">03780</button>
-      <button mat-raised-button (click)="toggleBotonesExtra(6)" class="detalle-button">03781</button>
-      <button mat-raised-button (click)="toggleBotonesExtra(7)" class="detalle-button">03782</button>
-
+      <button mat-raised-button *ngFor="let boton of detalleRightButtons; let i = index" class="detalle-button"
+        [class.active]="botonSeleccionado === i" (click)="toggleBotonesExtra(i)">
+        {{ boton }}
+      </button>
     </div>
+
     <!-- Botones Extra (11) -->
     <div class="extra-buttons" *ngIf="mostrarBotonesExtra">
       <button *ngFor="let boton of [].constructor(11); let i = index" mat-raised-button class="extra-button"
@@ -61,6 +57,7 @@
     </div>
 
     <!-- Botones Abajo (16) -->
+    <div class="below-buttons-title">Piezas por prenda</div>
     <div class="botones-abajo" *ngIf="mostrarBotones16">
       <button *ngFor="let boton of [].constructor(16); let i = index" class="boton-abajo">
         Botón {{ i + 1 }}
