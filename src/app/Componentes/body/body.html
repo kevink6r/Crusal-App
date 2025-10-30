@@ -12,13 +12,13 @@
         <img mat-card-image src="AAPW22-09B.png" alt="{{ prenda.mod }}" class="card-image" />
 
         <h3 class="card-title" style="font-weight: 700; font-size: 25px;">{{ prenda.mod }}</h3>
-        <p style="font-size: 20px; padding: 5px; line-height: 1.5;"><strong>Programador:</strong> {{ prenda.trb }}</p>
-        <p style="font-size: 20px; padding: 5px; "><strong>Máquina:</strong> {{ prenda.maq }}</p>
-        <p style="font-size: 20px; padding: 5px; line-height: 1.5;"><strong>Cantidad:</strong> {{ prenda.cnt }}</p>
+        <p style="font-size: 20px; padding: 5px; line-height: 1.5;"><strong>Programador:</strong> {{ prenda.prog }}</p>
+        <p style="font-size: 20px; padding: 5px; "><strong>Tejido:</strong> {{ prenda.tej }}</p>
+        <p style="font-size: 20px; padding: 5px; line-height: 1.5;"><strong>Titulo:</strong> {{ prenda.tit }}</p>
       </mat-card-content>
 
       <mat-card-actions align="end">
-        <button mat-raised-button color="primary" class="card-button" (click)="verDetalles(prenda)">
+        <button mat-raised-button color="primary" class="card-button" (click)="verDetalles(prenda)"> <!--  -->
           Ver Detalles
         </button>
       </mat-card-actions>
@@ -34,33 +34,36 @@
 
       <div class="detalle-info">
         <h3>{{ selectedPrenda.mod }}</h3>
-        <p><strong>Programador:</strong> {{ selectedPrenda.trb }}</p>
-        <p><strong>Máquina:</strong> {{ selectedPrenda.maq }}</p>
-        <p><strong>Cantidad:</strong> {{ selectedPrenda.cnt }}</p>
+        <p><strong>Programador:</strong> {{ selectedPrenda.prog }}</p>
+        <p><strong>Tejido:</strong> {{ selectedPrenda.tej }}</p>
+        <p><strong>Titulo:</strong> {{ selectedPrenda.tit }}</p>
         <h2><strong>Color: </strong>{{ selectedPrenda.col }}</h2>
       </div>
     </div>
 
-    <div class="detalle-right">
-      <button mat-raised-button *ngFor="let boton of detalleRightButtons; let i = index" class="detalle-button"
-        [class.active]="botonSeleccionado === i" (click)="toggleBotonesExtra(i)">
-        {{ boton }}
+    <!-- DESPACHOS -->
+    <div class="detalle-right" *ngIf="despachosList.length > 0">
+      <button mat-raised-button *ngFor="let despacho of despachosList; let i = index" class="detalle-button"
+        [class.active]="botonSeleccionado === i" (click)="seleccionarDespacho(despacho, i)">
+        {{ despacho.desp }}
+        <span class="arrow" *ngIf="botonSeleccionado === i">➔</span>
       </button>
     </div>
 
-    <!-- Botones Extra (11) -->
+    <!-- TALLAS -->
     <div class="extra-buttons" *ngIf="mostrarBotonesExtra">
-      <button *ngFor="let boton of [].constructor(11); let i = index" mat-raised-button class="extra-button"
-        (click)="mostrarBotonesPiezas(i)">
-        Extra {{ i + 1 }}
-      </button>
-    </div>
-
-    <!-- Botones Abajo (16) -->
-    <div class="below-buttons-title">Piezas por prenda</div>
-    <div class="botones-abajo" *ngIf="mostrarBotones16">
-      <button *ngFor="let boton of [].constructor(16); let i = index" class="boton-abajo">
-        Botón {{ i + 1 }}
+      <button *ngFor="let item of tallasList; let i = index" [class.active]="i === activeExtraButton"
+        (click)="seleccionarTalla(item, i)">
+        {{item.columnas}} ({{item.cantidad}})
       </button>
     </div>
   </div>
+</div>
+
+<!-- Botones Abajo (16) 
+    <div class="below-buttons-title">Piezas por prenda</div>
+    <div class="botones-abajo" [class.show]="mostrarBotones16">
+      <button *ngFor="let boton of [].constructor(16); let i = index" class="boton-abajo">
+        Botón {{ i + 1 }}
+      </button>
+    </div>-->

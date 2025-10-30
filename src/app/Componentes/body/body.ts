@@ -7,6 +7,7 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -20,8 +21,12 @@ import { MatButtonModule } from '@angular/material/button';
 export class Body {
   @Input() maquina: string = '';
   prendaSeleccionada: any = null;
+  botonDespachoSeleccionado: number | null = null;
 
+  tallasList: { cantidad: number, columnas: string }[] = [];
+  despachosList: any[] = [];
   dataList: any[] = [];
+
   filteredPrendas: any[] = [];
   selectedPrenda: any = null;
   mostrarBotonesExtra: boolean = false;
@@ -32,69 +37,134 @@ export class Body {
   activeBelowButton: number = -1;
   activeRightButton: number = -1;
 
-  constructor(private http: HttpClient) {
-    this.obtenerDatos();
+
+  constructor(private http: HttpClient, private cd: ChangeDetectorRef) {
   }
 
-  detalleRightButtons: string[] = ['03774','03777','03780','03781','03782','03780','03781','03782'];
-
-  /*
-  constructor() {
-    this.generarDatosMock();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['maquina'] && this.maquina) {
+      this.ObtenerMaquina(this.maquina);
+    }
   }
 
-  
-  generarDatosMock() {
-    this.dataList = [
-      { mod: 'Modelo AAPW22-01', trb: 'Juan Pérez', maq: '530', cnt: 120 },
-      { mod: 'Modelo AAPW22-02', trb: 'María Gómez', maq: '530', cnt: 95 },
-      { mod: 'Modelo AAPW22-03', trb: 'Carlos Ruiz', maq: '530', cnt: 140 },
-      { mod: 'Modelo AAPW22-04', trb: 'Ana López', maq: '540', cnt: 75 },
-      { mod: 'Modelo AAPW22-05', trb: 'Pedro Sánchez', maq: '530', cnt: 60 },
-      { mod: 'Modelo AAPW22-06', trb: 'Lucía Torres', maq: '550', cnt: 100 },
-    ];
-    this.filtrarPorMaquina(this.maquina);
-  }*/
-
-  ngOnChanges() {
-    this.filtrarPorMaquina(this.maquina);
-  }
-
-
-  obtenerDatos() {
-    this.http.get<any[]>("https://192.168.2.119:8080/api/trproduction/All")
+  // ===== APIS ==============================================================================================
+  ObtenerMaquina(maq: string) {
+    this.http.get<any[]>(`https://192.168.2.119:8080/api/trproduction/gantt?maq=${maq}`)
       .subscribe({
         next: (result) => {
           this.dataList = result;
-          this.filtrarPorMaquina(this.maquina);
+          this.filtrarPorMaquina(maq);
         },
         error: (err) => console.error("Error al obtener los datos:", err)
       });
   }
 
-  filtrarPorMaquina(tipo: string) {
-    if (!tipo) {
-      this.filteredPrendas = [];
+  ObtenerDespachos(idmod: string, op: string) {
+    const url = `https://192.168.2.119:8080/api/trproduction/despachos?idmod=${idmod}&op=${op}`;
+    this.http.get<any[]>(url).subscribe({
+      next: (result) => {
+        console.log('Despachos recibidos:', result);
+        this.despachosList = result;
+      },
+      error: (err) => console.error('Error al obtener despachos:', err),
+    });
+  }
+
+  ObtenerPiezas(iddh: string, idmod: string, tval: string) {
+    const url = `https://192.168.2.119:8080/api/trproduction/piezas?iddh=${iddh}&idmod=${idmod}&tval=${tval}`;
+    this.http.get<any[]>(url).subscribe({
+      next: (result) => {
+        console.log('Piezas recibidas:', result);
+        this.tallasList = result;
+        this.mostrarBotonesExtra = true; //activar los botones
+        this.activeExtraButton = -1;     //resetear selección
+      },
+      error: (err) => console.error('Error al obtener piezas:', err),
+    });
+  }
+
+  // ===== FUNCIONES =======================================================================================================
+  seleccionarDespacho(despacho: any, index: number) {
+    console.log('Despacho clickeado:', despacho);
+
+    if (this.botonSeleccionado === index) {
+      this.botonSeleccionado = null;
+      this.mostrarBotonesExtra = false;
+      this.tallasList = [];
+      this.activeExtraButton = -1;
       return;
     }
+
+    const tempTallas: { cantidad: number, columnas: string }[] = [];
+
+    for (let i = 1; i <= 11; i++) {
+      const col = `t${i}`;
+      const cantidad = despacho[col];
+      if (cantidad && cantidad !== 0) {
+        tempTallas.push({ cantidad, columnas: col });
+      }
+    }
+
+    console.log('Tallas extraídas:', tempTallas);
+
+    this.tallasList = tempTallas;
+    this.botonSeleccionado = index;
+    this.mostrarBotonesExtra = tempTallas.length > 0;
+    this.activeExtraButton = -1;
+    console.log('estado de buttons: ', this.mostrarBotonesExtra)
+    console.log('tallasList para renderizar:', this.tallasList);
+    this.cd.detectChanges();
+  }
+
+
+  filtrarPorMaquina(tipo: string) {
     this.filteredPrendas = this.dataList.filter(item =>
       item.maq?.toString().toLowerCase().includes(tipo.toLowerCase())
     );
     this.cerrarDetalles();
   }
 
+  seleccionarTalla(talla: any, index: number) {
+    this.activeExtraButton = index;
+    console.log('Talla seleccionada:', talla);
+  }
+
+  extraerTallas(despacho: any) {
+    const tempTallas: Array<{ cantidad: number, talla: string }> = [];
+    for (let i = 1; i <= 11; i++) {
+      const col = `t${i}`;
+      if (despacho[col] && despacho[col] !== 0) {
+        tempTallas.push({ cantidad: despacho[col], talla: despacho.tll });
+      }
+    }
+    return tempTallas;
+  }
+
+  // ===== Body Detalles =================================================================================================
+
   verDetalles(prenda: any) {
     this.selectedPrenda = prenda;
     this.mostrarBotonesExtra = false;
     this.mostrarBotones16 = false;
+    if (prenda.idmod && prenda.op) {
+      if (prenda.idmod && prenda.op) {
+        this.ObtenerDespachos(prenda.idmod, prenda.op);
+      }
+    } else {
+      console.warn("La prenda seleccionada no contiene idmod u op:", prenda);
+    }
   }
 
   cerrarDetalles() {
     this.selectedPrenda = null;
     this.mostrarBotonesExtra = false;
+    this.mostrarBotones16 = false;
+    this.botonSeleccionado = null;
+    this.tallasList = [];
+    this.despachosList = [];
   }
 
-  // ===== Botones Grid 11 ====================================================
+  // ===== Botones Grid 11 ===============================================================================================
   toggleBotonesExtra(index: number) {
     if (this.botonSeleccionado === index && this.mostrarBotonesExtra) {
       this.mostrarBotonesExtra = false;
@@ -107,7 +177,7 @@ export class Body {
     }
   }
 
-  // ===== Botones Abajo 16 ====================================================
+  // ===== Botones Abajo 16 ==============================================================================================
   mostrarBotonesPiezas(index?: number) {
     if (this.mostrarBotones16) {
       this.mostrarBotones16 = false;
@@ -117,3 +187,46 @@ export class Body {
   }
 
 }
+
+
+
+
+
+
+/* 
+
+seleccionarDespacho(despacho: any, index: number) {
+    const tempTallas: Array<{ cantidad: number, talla: string }> = [];
+    for (let i = 1; i <= 11; i++) {
+      const col = `t${i}`;
+      if (despacho[col] && despacho[col] !== 0) {
+        tempTallas.push({ cantidad: despacho[col], talla: despacho.tll });
+      }
+    }
+
+    this.tallasList = tempTallas;
+    this.botonSeleccionado = index;
+    this.mostrarBotonesExtra = true;
+    this.activeExtraButton = -1;
+
+    console.log('Tallas a mostrar:', this.tallasList);
+
+    this.cd.detectChanges(); 
+  }
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

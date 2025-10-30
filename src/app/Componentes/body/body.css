@@ -10,7 +10,8 @@
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(330px, max-content));
+  justify-content: center;
   gap: 16px;
   padding: 1rem;
   box-sizing: border-box;
@@ -187,7 +188,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 3rem;
-  padding: 2rem;
+  padding: 1rem;
   flex-wrap: wrap;
 }
 
@@ -227,6 +228,7 @@
   .extra-buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    /* Mantienes 3 columnas iguales */
     gap: 1rem;
     background: transparent;
     padding: 1rem;
@@ -234,28 +236,64 @@
     align-items: center;
     text-align: center;
     margin-top: -1rem;
-    margin-left: 0rem;
+    margin-left: 0;
+    width: 100%;
+
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.3s ease-in-out;
   }
 
-
-  .extra-button {
-    background-color: #26c92c !important;
-    color: white !important;
-    font-weight: 600;
-    border-radius: 2rem;
-    width: clamp(8rem, 12vw, 13rem);
-    height: clamp(6rem, 9vw, 8rem);
-    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
-    padding: 3rem;
-    transition: all 0.2s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-wrap: wrap;
+  .extra-buttons.show {
+    opacity: 1;
+    transform: translateX(0);
   }
 
-  /*
+  .extra-button .arrow {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-5px);
+    animation: arrowDown 0.5s forwards;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+  }
+}
+
+@keyframes arrowDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(5px);
+  }
+}
+
+.extra-button {
+  background-color: #26c92c !important;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 2rem;
+  width: clamp(8rem, 12vw, 13rem);
+  height: clamp(6rem, 9vw, 8rem);
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  padding: 3rem;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+/*
 .extra-buttons {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(clamp(8rem, 12vw, 13rem), 1fr));
@@ -282,10 +320,9 @@
 }*/
 
 
-  .extra-button:hover {
-    background-color: #43a047 !important;
-    transform: scale(1.05);
-  }
+.extra-button:hover {
+  background-color: #43a047 !important;
+  transform: scale(1.05);
 }
 
 .detalle-info h3 {
@@ -322,7 +359,33 @@
   font-weight: 600;
   transition: all 0.2s ease;
   border-radius: 25px;
+  padding-right: 2rem;
   font-size: 16px
+}
+
+.detalle-button .arrow {
+  display: inline-block;
+  margin-left: 0.5rem;
+  transform: translateX(0);
+  opacity: 0;
+  animation: arrowMove 0.5s forwards;
+}
+
+@keyframes arrowMove {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateX(10px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(20px);
+    opacity: 1;
+  }
 }
 
 .detalle-button:hover {
@@ -359,13 +422,23 @@
   gap: 1rem;
   padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(clamp(9rem, 13vw, 10rem), 1fr));
-  justify-content: flex;
+  justify-content: start;
   overflow-x: auto;
   max-width: 110%;
-  margin-top: -30px;
+  margin-top: -20px;
   display: grid;
   justify-items: left;
   align-items: center;
+
+  /* transición inicial */
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease-in-out;
+}
+
+.botones-abajo.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .boton-abajo {
@@ -403,13 +476,15 @@
 
 /* Extra Buttons */
 .extra-button.active {
-  background-color: #1e7e1e !important; /* verde más oscuro */
+  background-color: #1e7e1e !important;
+  /* verde más oscuro */
   transform: scale(1.08);
 }
 
 /* Botones Abajo */
 .boton-abajo.active {
-  background-color: #e69c00 !important; /* naranja más oscuro */
+  background-color: #e69c00 !important;
+  /* naranja más oscuro */
   transform: scale(1.05);
 }
 
