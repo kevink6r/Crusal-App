@@ -28,15 +28,17 @@ export class Body {
   mostrarBotones16: boolean = false;
   selectedMachine: string = '';
   botonSeleccionado: number | null = null;
-  
+
+  /*
   constructor(private http: HttpClient) {
     this.obtenerDatos();
   }
+  */
 
-  /*
+
   constructor() {
     this.generarDatosMock();
-  }*/
+  }
 
   generarDatosMock() {
     this.dataList = [
@@ -54,6 +56,7 @@ export class Body {
     this.filtrarPorMaquina(this.maquina);
   }
 
+  /*
   obtenerDatos() {
     this.http.get<any[]>("https://192.168.2.119:8080/api/trproduction/All")
       .subscribe({
@@ -63,7 +66,7 @@ export class Body {
         },
         error: (err) => console.error("Error al obtener los datos:", err)
       });
-  }
+  }*/
 
   filtrarPorMaquina(tipo: string) {
     if (!tipo) {
@@ -88,18 +91,25 @@ export class Body {
   }
 
   // ===== Botones Grid 11 ====================================================
-  toggleBotonesExtra() {
-    this.mostrarBotonesExtra = !this.mostrarBotonesExtra;
-    if (!this.mostrarBotonesExtra) {
+  toggleBotonesExtra(index: number) {
+    if (this.botonSeleccionado === index && this.mostrarBotonesExtra) {
+      this.mostrarBotonesExtra = false;
       this.mostrarBotones16 = false;
       this.botonSeleccionado = null;
+    } else {
+      this.botonSeleccionado = index;
+      this.mostrarBotonesExtra = true;
+      this.mostrarBotones16 = false;
     }
   }
 
   // ===== Botones Abajo 16 ====================================================
   mostrarBotonesPiezas(index?: number) {
-    this.botonSeleccionado = index ?? 0;
-    this.mostrarBotones16 = true;
-    
+    if (this.mostrarBotones16) {
+      this.mostrarBotones16 = false;
+    } else {
+      this.mostrarBotones16 = true;
+    }
   }
+
 }
